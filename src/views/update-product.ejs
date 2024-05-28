@@ -8,7 +8,7 @@
 </div>
 <%}%>
 
-<form action="/update-product/" method="post">
+<form action="/update-product" method="post">
     <input type="hidden" class="form-control" id="id" name="id" value="<%= product.id %>">
     
     <div class="mb-3">
@@ -17,16 +17,20 @@
     </div>
     <div class="mb-3">
         <label for="desc" class="form-label">Product Description</label>
-        <textarea class="form-control" id="desc" name="desc" rows="3" required><%= product.desc%></textarea>
-
+        <textarea class="form-control" id="desc" name="desc" rows="3"
+        required><%= product.desc %>
+    </textarea>
     </div>
     <div class="mb-3">
         <label for="price" class="form-label">Price</label>
-        <input type="number" class="form-control" id="price" name="price" step="0.01" value="<%= product.price %>">
+        <input type="number" class="form-control" id="price" name="price" 
+        value="<%= product.price %>"
+        step="0.01">
     </div>
     <div class="mb-3">
         <label for="imageUrl" class="form-label">Image URL</label>
-        <input type="text" class="form-control" id="imageUrl" name="imageUrl" value="<%= product.imageUrl %>">
+        <input type="text" class="form-control" id="imageUrl" name="imageUrl"
+        value="<%= product.imageUrl %>">
     </div>
     <button type="submit" class="btn btn-primary">Update Product</button>
 </form>

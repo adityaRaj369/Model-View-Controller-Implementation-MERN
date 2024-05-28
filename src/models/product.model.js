@@ -11,7 +11,21 @@ export default class ProductModel {
     return products;
   }
 
-  static add(name,desc,price,imageUrl) {
+  static update(productObj) {
+    const index = products.findIndex(
+      (p) => p.id == productObj.id
+    );
+    products[index] = productObj;
+  }
+
+  static delete(id) {
+    const index = products.findIndex(
+      (p) => p.id == id
+    );
+    products.splice(index, 1);
+  }
+
+  static add(name, desc, price, imageUrl) {
     let newProduct = new ProductModel(
       products.length + 1,
       name,
@@ -20,14 +34,6 @@ export default class ProductModel {
       imageUrl
     );
     products.push(newProduct);
-  }
-  static update(productObj){
-    const index= products.findIndex((p)=> p.id==productObj.id);
-    products[index]=productObj;
-  }
-  static delete(id){
-    const index= products.findIndex((p)=> p.id==id);
-    products.splice(index,1);
   }
 
   static getById(id) {
