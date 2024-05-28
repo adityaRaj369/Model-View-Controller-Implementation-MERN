@@ -1,6 +1,7 @@
 import express from 'express';
 import ProductsController from './src/controllers/product.controller.js';
 import ejsLayouts from 'express-ejs-layouts';
+import UserController from './src/controllers/user.controller.js';
 import path from 'path';
 import validationMiddleware from './src/middlewares/validation.middleware.js';
 import { uploadFile } from './src/middlewares/file-upload.middleware.js';
@@ -11,6 +12,8 @@ app.use(express.static('public'));
 const productsController =
   new ProductsController();
 
+const usersController=new UserController();
+
 app.use(ejsLayouts);
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -19,6 +22,11 @@ app.set(
   'views',
   path.join(path.resolve(), 'src', 'views')
 );
+
+app.get('/register',usersController.getRegister);   //Register new User
+app.get('/login',usersController.getLogin);   //loging the user in
+app.post('/register',usersController.postRegister);  //for storing data in users array and redirecting to the register page as defined in the method
+app.post('/login',usersController.postLogin)
 
 app.get('/', productsController.getProducts);
 app.get(
